@@ -1,0 +1,131 @@
+@startuml taqueria
+left to right direction
+
+title Taqueria
+
+' users 
+"Cocinero" as cocinero
+"Mesero" as mesero
+"Cajero" as cajero
+"Administrador" as admin
+"Sistema de Alertas" as alertas
+
+rectangle "Punto de Venta de Tacos" {
+    (Iniciar Sesión) as CU0
+    (Gestionar Ordenes) as CU1
+    ' (Cobrar) as CU2
+    ' (Consultar Ordenes) as CU3
+    (Consultar Inventario) as CU4
+    ' (Generar Ticket) as CU5
+    (Ver Historial de Ventas) as CU6
+    (Gestionar Inventario) as CU7
+    (Gestionar Usuarios) as CU8
+    ' (Gestionar Roles) as CU9
+
+    ' includes dle CU1 (gestionar ordenes)
+    (Alta de Orden) as CU1.1
+    (Baja de Orden) as CU1.2
+    (Modificar Orden) as CU1.3
+    (Consultar Orden) as CU1.4
+
+    ' caso extra para cuando existe algun error en el cobro
+        ' para el admin:
+        ' (Modificar Orden) as CU10
+        ' para el cajero:
+        ' (Solicitar Modificación de Orden) as CU11 
+    ' cajero
+    (Finalizar orden) as CU12
+    (Generar Ticket) as CU12.1
+    (Cobrar) as CU12.1.1
+    
+
+    ' para el sistema de alertas
+    (Notificar al Cocinero) as CU13
+    ' (Notificar al Cajero) as CU14
+    (Notificar al Mesero) as CU15
+
+    ' inventario
+    (Alta Inventario) as CU7.1
+    (Baja Inventario) as CU7.2
+    (Modificar Inventario) as CU7.3
+
+    ' usuarios
+    (Alta Usuario) as CU8.1
+    (Baja Usuario) as CU8.2
+    (Modificar Usuario) as CU8.3
+
+    ' roles
+    ' (Alta Rol) as CU9.1
+    ' (Baja Rol) as CU9.2
+    ' (Modificar Rol) as CU9.3
+}
+
+' todos deben poder iniciar sesion
+cocinero --> CU0
+mesero --> CU0
+cajero --> CU0
+' admin --> CU0
+
+' cocinero
+cocinero -> CU1.4
+' el cocinero puede decir cuando se acabo algún ingrediente
+cocinero -> CU4
+cocinero -> CU15
+CU4 .-> CU7.3 : include
+
+' mesero
+mesero -> CU1
+mesero -> CU1.3 
+CU1 .-> CU13 : include
+
+' cajero
+' cajero -> CU2
+' cajero -> CU5
+cajero -> CU6
+' en caso de emergencia el cajero puede tomar ordenes
+cajero -> CU1
+' cajero -> CU11
+cajero -> CU12
+' CU12 .-> CU14 : include
+
+' admin, puede hacer todo 
+' admin -> CU1
+' admin -> CU2
+' admin -> CU4
+' admin -> CU5
+' admin -> CU6
+' admin -> CU7
+' admin -> CU8
+' admin -> CU9
+' admin -> CU11
+' admin -> CU12
+
+CU1 .-> CU1.1 : include
+CU1 .-> CU1.2 : include
+CU1 .-> CU1.3 : include
+CU1 .-> CU1.4 : include
+
+CU7 .-> CU7.1 : include
+CU7 .-> CU7.2 : include
+CU7 .-> CU7.3 : include
+
+CU8 .-> CU8.1 : include
+CU8 .-> CU8.2 : include
+CU8 .-> CU8.3 : include
+
+' CU9 .-> CU9.1 : include
+' CU9 .-> CU9.2 : include
+' CU9 .-> CU9.3 : include
+CU12 .-> CU12.1 : include
+CU12.1 .-> CU12.1.1 : include
+
+' todos los notificar estan conectados al sistema de alertas
+alertas -- CU13
+' alertas -- CU14
+alertas -- CU15
+
+admin --> (Punto de Venta de Tacos)
+
+' CU11 <.- CU1.3 : extend
+
+@enduml
