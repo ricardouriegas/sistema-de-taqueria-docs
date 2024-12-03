@@ -1,0 +1,54 @@
+@startuml
+entity "Usuario" as usuario {
+  +ID: int
+  +Nombre: string
+  +Apellido: string
+  +Correo: string
+  +Contraseña: string
+  +Rol: string
+}
+
+entity "Orden" as orden {
+  +ID: int
+  +Fecha: date
+  +Estado: string
+  +Total: float
+  +ID_Usuario: int
+}
+
+entity "Producto" as producto {
+  +ID: int
+  +Nombre: string
+  +Descripción: string
+  +Precio: float
+  +Stock: int
+}
+
+entity "DetalleOrden" as detalleOrden {
+  +ID: int
+  +ID_Orden: int
+  +ID_Producto: int
+  +Cantidad: int
+  +Subtotal: float
+}
+
+entity "Inventario" as inventario {
+  +ID: int
+  +ID_Producto: int
+  +Cantidad: int
+}
+
+entity "Notificación" as notificacion {
+  +ID: int
+  +Mensaje: string
+  +Fecha: date
+  +ID_Usuario: int
+}
+
+usuario ||--o{ orden : "realiza"
+orden ||--o{ detalleOrden : "contiene"
+producto ||--o{ detalleOrden : "es parte de"
+producto ||--o{ inventario : "gestiona"
+usuario ||--o{ notificacion : "recibe"
+
+@enduml

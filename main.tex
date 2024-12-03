@@ -66,11 +66,13 @@
         \textbf{Rodrigo Santamaria Martinez} \\ \\
 		Profesora: Maria Raquel Ortiz Alvarez \\
 		Ciudad Victoria, Tamaulipas. \\
-		(inserte fecha)}
+		Diciembre 2024}
 \maketitle
 \newpage
 
 \tableofcontents
+% figures
+\listoffigures
 \newpage
 
 \section{Introducción}
@@ -635,31 +637,31 @@ El sistema de taquería está diseñado para gestionar de manera eficiente las o
 \newpage
 \section{Riesgos Identificados}
 
-\subsection{5.1 R1: Pérdida de Datos}
+\subsection{R1: Pérdida de Datos}
 \begin{itemize}
     \item \textbf{Descripción}: Posibilidad de pérdida de datos por fallos en el sistema o errores humanos.
     \item \textbf{Mitigación}: Realizar backups periódicos y contar con sistemas de recuperación de información.
 \end{itemize}
 
-\subsection{5.2 R2: Fallos en la Infraestructura Tecnológica}
+\subsection{R2: Fallos en la Infraestructura Tecnológica}
 \begin{itemize}
     \item \textbf{Descripción}: Interrupciones en la infraestructura tecnológica que pueden afectar la operatividad del sistema.
     \item \textbf{Mitigación}: Implementar redundancia en los servidores y realizar mantenimientos preventivos regularmente.
 \end{itemize}
 
-\subsection{5.3 R3: Brechas de Seguridad}
+\subsection{R3: Brechas de Seguridad}
 \begin{itemize}
     \item \textbf{Descripción}: Riesgo de accesos no autorizados a información sensible debido a vulnerabilidades en el sistema.
     \item \textbf{Mitigación}: Utilizar encriptación de datos, implementar autenticación multifactor y realizar auditorías de seguridad periódicas.
 \end{itemize}
 
-\subsection{5.4 R4: Resistencia al Cambio}
+\subsection{R4: Resistencia al Cambio}
 \begin{itemize}
     \item \textbf{Descripción}: Dificultad en la adopción del nuevo sistema por parte de los empleados, lo que puede reducir la eficiencia operativa.
     \item \textbf{Mitigación}: Proporcionar capacitación adecuada, involucrar a los empleados en el proceso de implementación y ofrecer incentivos para el uso del sistema.
 \end{itemize}
 
-\subsection{5.5 R5: Dependencia de Proveedores Externos}
+\subsection{R5: Dependencia de Proveedores Externos}
 \begin{itemize}
     \item \textbf{Descripción}: Retrasos o fallos en servicios de terceros que pueden impactar el funcionamiento del sistema.
     \item \textbf{Mitigación}: Diversificar proveedores, establecer acuerdos de nivel de servicio (SLA) claros y mantener planes de contingencia.
@@ -747,6 +749,14 @@ Este documento refleja los requisitos funcionales y no funcionales para el siste
     \includegraphics[width=1\textwidth]{casos/uml.png}
     \caption{Diagrama de Casos de Uso del Sistema de Taquería}
     \label{fig:diagrama_casos_uso}
+\end{figure}
+
+\subsection{Diagrama Entidad-Relación}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{casos/EntidadRelacion.png}
+    \caption{Diagrama Entidad-Relación del Sistema de Taquería}
+    \label{fig:diagrama_er}
 \end{figure}
 
 \end{document}
